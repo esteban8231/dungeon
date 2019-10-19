@@ -8,7 +8,30 @@ h3 Acá irá una barra de navegación, si nos gusta tal idea
         - 15.times do |n|
           button.grid_button      
     - n = 33.18
-    p.medium style="left: 33.18rem" &nbsp;🐺  
-    p.big.x1.y1 style="left: #{n}rem" &nbsp;🐺
-    p.medium.x2.y2 &nbsp;🐺
+    p.miniature.medium style="left: 33.18rem" &nbsp;🐺  
+    p.miniature.big.x1.y1 style="left: #{n}rem" &nbsp;🐺
+    p.miniature.medium.x2.y2 &nbsp;🐺
 
+    - ancho = 40
+    .card style="left: #{ancho}rem"
+      = radio_button_tag :personaje, "Lobo"      
+      = label_tag :age_child, "🐺 Lobo"      
+      = radio_button_tag :age, "Aramil"
+      = label_tag :age_adult, "🏃 Aramil"
+      p Fue 15(2) Dex 8(-1) Con 20(5) Int 14(2) Car 17(3) Sab 12(1)
+      p HP max: 11, HP actual + temp: 5 + 4
+      p AC: 12
+      h3 Ataques
+      ul
+        li Espada corta: +3/1d6+1
+        li Escupirle en la cara: -1/1d2-1
+        li Hacerle muecas: +3/1d12+7
+      h3 Hechizos conocidos
+      = select(:asdf, :nivel, [['Nivel 0', 0], ['Nivel 1', 1], ['Nivel 2', 2]])
+      ul 
+        li Bola de fuego frío: 30' + 5'/nivel; CD 15; 2d4-1
+          | tiempo de lanzamiento: 10 min; duración 1 min
+        li Bola de fuego frío: 30' + 5'/nivel; 1d20 + INT; 2d4-1
+          | tiempo de lanzamiento: 10 min; duración 1 min
+        li Bola de fuego frío: 30' + 5'/nivel; CD 15; 2d4-1
+          | tiempo de lanzamiento: 10 min; duración 1 min
