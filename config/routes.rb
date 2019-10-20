@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
-  get 'maps/show'
-  get 'maps/new'
-  get 'maps/create'
-  get 'maps/index'
-  get 'characters/move'
-  get 'basic_pages/home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  root to: 'maps#current'  
+  
+  resources :maps, only: [:new, :create, :index] do
+    member do
+      get 'current'
+    end
+  end
+
+  resources :characters, only: [:new, :create, :edit, :update] do
+    member do
+      get 'move'
+    end
+  end
+
+  get 'login', to: 'basic_pages#login'
+  post 'login', to: 'basic_pages#register'  
 end
