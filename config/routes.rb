@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root to: 'maps#current'  
   
-  resources :maps, only: [:new, :create, :index] do
+  resources :maps, only: [:new, :edit, :create, :index] do
     member do
       get 'current'
     end
