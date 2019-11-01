@@ -3,7 +3,8 @@ class MapsController < ApplicationController
 
   def current
     @map = Map.current
-    @characters = Character.owner_is(cookies[:user])    
+    @characters = Character.owner_is(cookies[:user])
+    @map_characters = Character.in_map
   end
 
   def new

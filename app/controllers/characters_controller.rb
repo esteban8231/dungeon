@@ -16,6 +16,8 @@ class CharactersController < ApplicationController
   end
 
   def move
-    
+    respond_to do |format|
+      format.js {puts "asdf" * 30}
+    end
   end
 end

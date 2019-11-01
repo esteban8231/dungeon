@@ -6,9 +6,13 @@ h3 Acá irá una barra de navegación, si nos gusta tal idea
     - @map.rows.order(:ordinate).each do |row|
       .row_container        
         - row.tiles.order(:abscissa).each do |tile|
-          button.grid_button class = "#{@map.map_type}_#{tile.tile_type}"
+          /button class = "grid_button #{@map.map_type}_#{tile.tile_type}"
+          = button_to '', movements_path(ordinate: tile.ordinate, abscissa: tile.abscissa), class: "grid_button #{@map.map_type}_#{tile.tile_type}", remote: true
     - n = 33.18
-    .
+    #miniatures
+      - @map_characters.each do |character|
+        p.miniature.medium style="left: #{2.37 * character.abscissa}rem; top: #{2.37 * character.ordinate}rem"
+          = "·#{character.icon}"
       p.miniature.medium style="left: 33.18rem" &nbsp;🏃  
       p.miniature.big.x1.y1 style="left: #{n}rem" &nbsp;🐺
       p.miniature.medium.x2.y2 &nbsp;🐺
