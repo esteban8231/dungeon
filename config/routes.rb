@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :movements, only: [:create]
 
   resources :characters, only: [:new, :create, :edit, :update]
+  resources :characters do
+    member do
+      post 'preview'
+    end
+  end    
   
   patch 'characters/move'
 

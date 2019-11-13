@@ -1,5 +1,3 @@
-h3 Acá irá una barra de navegación, si nos gusta tal idea
-
 .map_container
   img.is_background src="#{@map.background_image_link}"
   .grid_container
@@ -10,15 +8,16 @@ h3 Acá irá una barra de navegación, si nos gusta tal idea
           = button_to '', movements_path(ordinate: tile.ordinate, abscissa: tile.abscissa), class: "grid_button #{@map.map_type}_#{tile.tile_type}", remote: true
     - n = 33.18
     #miniatures
-      - @map_characters.each do |character|
-        p.miniature.medium style="left: #{2.37 * character.abscissa}rem; top: #{2.37 * character.ordinate}rem"
-          = "·#{character.icon}"
+      = render 'miniatures', map_characters: @map_characters
 
     - ancho = 40
     .card style="left: #{ancho}rem"
+      .char_container
+        - Character.owner_is(@user).in_map.each do |monster|
+          = button_to "#{monster.icon} #{monster.name}", preview_character_path(monster), remote: true
       = radio_button_tag :personaje, "Lobo"      
       = label_tag :age_child, "🐺 Lobo"      
-      = radio_button_tag :age, "Aramil"
+      = radio_button_tag :personaje, "Aramil"
       = label_tag :age_adult, "🏃 Aramil"
       p Fue 15(2) Dex 8(-1) Con 20(5) Int 14(2) Car 17(3) Sab 12(1)
       p HP max: 11, HP actual + temp: 5 + 4
