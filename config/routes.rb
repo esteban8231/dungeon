@@ -2,11 +2,18 @@ Rails.application.routes.draw do
   
   root to: 'maps#current'  #Principal page
   
-  resources :maps, only: [:new, :edit, :create, :index] #Solo para el master
-
   resources :movements, only: [:create] #Mueve una miniatura
 
-  resources :characters, only: [:show, :new, :create, :edit, :update] #show es el que se hace con js
+  resources :characters, only: [:show, :new, :create, :edit, :update, :index]
+  resources :character_views, only: [:create] #Es el js que se hace con js para la vista del mapa
+
+  resources :maps, only: [:new, :edit, :create, :index] #Solo para el master
+
+  resources :tiles, only: [:update] #Solo para el master
+
+  resources :attacks, only: [:create, :destroy]
+  resources :armors, only: [:create, :destroy]
+
 
   get 'login', to: 'basic_pages#login'
   post 'login', to: 'basic_pages#register'  
