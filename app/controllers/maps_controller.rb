@@ -4,6 +4,7 @@ class MapsController < ApplicationController
   def current
     @map = Map.current
     @characters = Character.owner_is(cookies[:user])
+    @character = Character.find_by(id: cookies[:character_id]) || @characters.first
     @map_characters = Character.in_map
   end
 
@@ -24,6 +25,8 @@ class MapsController < ApplicationController
   def edit
     @map = Map.find(params[:id])    
   end
+
+  #No hay update sino que lo que se updatea son los tiles
 
   def index
     @maps = Map.to_show

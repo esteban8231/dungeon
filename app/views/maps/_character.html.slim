@@ -1,0 +1,15 @@
+p
+  = "#{character.name} #{character.icon}"
+h3 Ataques
+- character.attacks.each do |attack|
+  p
+    = "#{attack.weapon} + #{attack.attack_bonus} / #{attack.damage_dice}"
+h3 Características
+p 
+  = "Fue #{character.strength} Dex #{character.dexterity} Con #{character.constitution} Int #{character.inteligence} Car #{character.charisma} Sab #{character.wisdom}"
+h3 HP
+p
+  = "Max: #{character.hp_max}"
+p
+  = "AC: #{character.calculate_ac}"
+h3 Hechizos conocidos
