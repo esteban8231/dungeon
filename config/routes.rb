@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   resources :movements, only: [:create] #Mueve una miniatura
 
-  resources :characters, only: [:show, :new, :create, :edit, :update, :index]
+  resources :characters
   resources :character_views, only: [:create] #Es el js que se hace con js para la vista del mapa
 
   resources :maps, only: [:new, :edit, :create, :index] #Solo para el master

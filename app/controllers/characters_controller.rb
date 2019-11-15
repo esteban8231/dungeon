@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+  before_action :check_for_master, only: [:delete, :update]
 
   def new
     @character = Character.new
@@ -19,16 +20,24 @@ class CharactersController < ApplicationController
   end
 
   def update
-    
+    puts params
+    #Acá el master elige quién es visible
   end
 
-  def index    
-    @characters = Character.owner_is(cookies[:user])
+  def index        
+    unless cookies[:user] == "Mmaster"
+      @characters = Character.owner_is(cookies[:user])    
+    else
+      @characters = Character.all    
+    end
   end
 
   def show
-    @character.owner_is(cookies[:user]).find(params[:id])
-    
+    @character.owner_is(cookies[:user]).find(params[:id])    
+  end
+
+  def delete
+
   end
 
   private
