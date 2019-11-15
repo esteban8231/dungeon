@@ -28,7 +28,7 @@ class CharactersController < ApplicationController
 
   def show
     @character.owner_is(cookies[:user]).find(params[:id])
-    #Coloca el cookie y muestra las características del otro    
+    
   end
 
   private
