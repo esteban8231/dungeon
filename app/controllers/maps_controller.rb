@@ -9,6 +9,7 @@ class MapsController < ApplicationController
   end
 
   def new
+    @map = Map.new
     #Simplemente preguntará por el tipo de mapa y el tamaño y por defecto se creará con simples
     #Existirá el edit del mapa y el update de los tiles.
   end
@@ -29,7 +30,7 @@ class MapsController < ApplicationController
   #No hay update sino que lo que se updatea son los tiles
 
   def index
-    @maps = Map.to_show
+    @maps = Map.all
   end
 
   private
