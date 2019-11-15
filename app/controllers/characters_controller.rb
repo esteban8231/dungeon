@@ -16,7 +16,9 @@ class CharactersController < ApplicationController
 
   #Acá se adicionan ataques y pendejadas
   def edit
-    @character.owner_is(cookies[:user]).find(params[:id])
+    @character = Character.owner_is(cookies[:user]).find(params[:id])
+    @attack = @character.attacks.build
+    @armor = @character.armors.build
   end
 
   def update
@@ -33,7 +35,7 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character.owner_is(cookies[:user]).find(params[:id])    
+    @character = Character.owner_is(cookies[:user]).find(params[:id])    
   end
 
   def delete
