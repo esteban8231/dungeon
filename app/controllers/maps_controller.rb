@@ -37,7 +37,7 @@ class MapsController < ApplicationController
   private
 
     def check_for_master
-      unless cookies[:user] == "master"
+      unless cookies[:user] == "Mmaster"
         redirect_to root_path
       end
     end

@@ -1,1 +1,49 @@
-/ tengo acceso a @character
+.container
+  .title Hora de crear un nuevo personaje
+  .subtitle Datos básicos
+  = form_with model: @character, local: true do |f|
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :name, "Nombre", class: 'label'
+      .field-body
+        = f.text_field :name, placeholder: "Chtulu"
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :icon, "Miniatura", class: 'label'
+      .field-body
+        = f.text_field :icon, placeholder: "👽"
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :strength, "Fuerza", class: 'label'
+      .field-body
+        = f.number_field :strength, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :dexterity, "Destreza", class: 'label'
+      .field-body
+        = f.number_field :dexterity, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :constitution, "Constitución", class: 'label'
+      .field-body
+        = f.number_field :constitution, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :wisdom, "Sabiduría", class: 'label'
+      .field-body
+        = f.number_field :wisdom, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :inteligence, "Inteligencia", class: 'label'
+      .field-body
+        = f.number_field :inteligence, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+        = f.label :charisma, "Carisma", class: 'label'
+      .field-body
+        = f.number_field :charisma, placeholder: 10
+    .field.is-horizontal
+      .field-label.is-normal
+      .field-body
+        = f.submit "Crear", class: "button is-success"
+    
