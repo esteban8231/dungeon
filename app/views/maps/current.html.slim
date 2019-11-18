@@ -11,7 +11,7 @@
       = render 'miniatures', map_characters: @map_characters
 
     - ancho = 40
-    .card style="left: #{ancho}rem"
+    .character_card style="left: #{ancho}rem"
       #char_container
         - Character.owner_is(@user).in_map.each do |monster|
           = button_to "#{monster.icon} #{monster.name}", character_path(monster), remote: true

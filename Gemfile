@@ -5,7 +5,6 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
-# Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
@@ -18,6 +17,8 @@ gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 
 gem 'slim-rails', '~> 3.2'
 gem 'sass-rails', '~> 5'
+
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

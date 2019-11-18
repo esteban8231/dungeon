@@ -1,0 +1,31 @@
+<nav class="navbar is-black" role="navigation" aria-label="main navigation">  
+  <div class="navbar-menu is-active">
+    <div class="navbar-start">
+      <%= link_to "Mapa actual", '#', class: "navbar-item" %>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Personajes
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to "Mis personajes", '#', class: "navbar-item" %>
+          <%= link_to "Nuevo", '#', class: "navbar-item" %>          
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <% if cookies[:user] == "Mmaster" %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Mapas
+          </a>
+
+          <div class="navbar-dropdown">
+            <%= link_to "Todos", '#', class: "navbar-item" %>
+            <%= link_to "Nuevo", '#', class: "navbar-item" %>          
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
