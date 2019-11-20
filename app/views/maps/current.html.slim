@@ -12,7 +12,7 @@
 
     - ancho = 40
     .character_card style="left: #{ancho}rem"
+      - Character.owner_is(cookies[:user]).in_map.each do |monster|
+        = link_to "#{monster.icon} #{monster.name}", character_views_path(character_id: monster.id), remote: true, method: :post, class: "button is-warning"
       #char_container
-        - Character.owner_is(@user).in_map.each do |monster|
-          = button_to "#{monster.icon} #{monster.name}", character_path(monster), remote: true
-      = render 'character', character: @character
+        = render 'character', character: @character

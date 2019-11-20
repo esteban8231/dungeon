@@ -8,4 +8,8 @@ class Character < ApplicationRecord
   def calculate_ac
     armors.sum(:value)
   end
+
+  def make_visible
+    self.update(is_visible: true, ordinate: 0, abscissa: 0)
+  end
 end
