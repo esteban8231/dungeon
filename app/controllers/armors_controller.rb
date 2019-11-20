@@ -1,11 +1,11 @@
 class ArmorsController < ApplicationController
   def create
-    @armor = Armor.new(armor_params)
+    @armor = Armor.new(value: params[:value].first, name: params[:name], character_id: params[:character_id])
     @character = @armor.character
     if @armor.save
-      redirect_to @character
+      redirect_to edit_character_path(@character)
     else
-      render @character
+      render edit_character_path(@character)
     end
   end
 
@@ -19,6 +19,6 @@ class ArmorsController < ApplicationController
   private
 
   def armor_params
-    params.require(:armor).permit(:value, :armor_type, :character_id)
+    params.permit(:value, :armor_type, :character_id)    
   end
 end

@@ -3,9 +3,9 @@ class AttacksController < ApplicationController
     @attack = Attack.new(attack_params)
     @character = @attack.character
     if @attack.save
-      redirect_to @character
+      redirect_to edit_character_path(@character)
     else
-      render @character
+      render edit_character_path(@character)
     end
   end
 
@@ -19,6 +19,10 @@ class AttacksController < ApplicationController
   private
 
   def attack_params
-    params.require(:attack).permit(:attack_bonus, :damage_dice, :character_id, :weapon)
+    {
+      attack_bonus: params[:attack_bonus],
+      damage_dice: params[:damage_dice],
+      character_id: params[:character_id],
+      weapon: params[:weapon]}
   end
 end

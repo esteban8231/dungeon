@@ -1,1 +1,68 @@
-/Tengo acceso a @character, @attack, @armor
+/Tengo acceso a @character, @attack (nuevo), @armor (nuevo)
+.container
+  .is-size-1 = "#{@character.name} #{@character.icon}"
+  .columns
+    .column.is-3
+      .is-size-3.has-text-link Características
+      table.table.is-bordered.is-striped
+        tbody
+          tr
+            th Fue
+            td = @character.strength
+          tr  
+            th Dex
+            td = @character.dexterity
+          tr  
+            th Con
+            td = @character.constitution
+          tr  
+            th Int
+            td = @character.inteligence
+          tr  
+            th Sab
+            td = @character.wisdom
+          tr  
+            th Cha
+            td = @character.charisma
+    .column.is-5
+      .is-size-3.has-text-link Ataques
+      table.table.is-narrow       
+        thead
+          tr
+            th Arma
+            th Atk bonus
+            th Daño
+        tbody
+          - @character.attacks.each do |attack|
+            tr
+              th = attack.weapon
+              td = attack.attack_bonus
+              td = attack.damage_dice
+          = form_with model: @attack, local: true do |f|
+            tr
+              td = text_field_tag :weapon, "",  placeholder: "Bofetada", size: "15"
+              td = text_field_tag :attack_bonus, "",  placeholder: "+4", size: "4"
+              td = text_field_tag :damage_dice, "", placeholder: "2d9 - 2", size: "10"
+            tr
+              td = hidden_field_tag :character_id, @character.id
+              td 
+              td = submit_tag "Agregar", class: "button is-dark is-rounded is-small"
+    .column.is-4
+      .is-size-3.has-text-link = "Armadura #{@character.calculate_ac}"
+      table.table.is-narrow 
+        thead
+          tr
+            th Armadura
+            th Mod
+        tbody
+          - @character.armors.each do |armor|
+            tr
+              td = armor.name
+              th = armor.value                
+          = form_with model: @armor, local: true do |f|
+            tr
+              td = text_field_tag :name, "",  placeholder: "Escudo de hojas", size: "12"
+              td = number_field :value, "",  placeholder: "13", size: "2"
+            tr
+              td = hidden_field_tag :character_id, @character.id
+              td = submit_tag "Agregar", class: "button is-dark is-rounded is-small"
