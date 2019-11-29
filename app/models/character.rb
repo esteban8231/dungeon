@@ -10,6 +10,10 @@ class Character < ApplicationRecord
   end
 
   def make_visible
-    self.update(is_visible: true, ordinate: 0, abscissa: 0)
+    self.update(is_current: true, ordinate: 0, abscissa: 0)    
+  end
+
+  def kill
+    self.update(is_current: false, ordinate: 0, abscissa: 0)    
   end
 end
