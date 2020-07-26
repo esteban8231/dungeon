@@ -17,6 +17,7 @@ gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 
 gem 'slim-rails', '~> 3.2'
 gem 'sass-rails', '~> 5'
+gem 'rollbar'
 
 
 
