@@ -16,7 +16,7 @@ class MapsController < ApplicationController
   end
 
   def create
-    @map = Map.generate(map_params)
+    @map = Map.generate(map_params.to_h.symbolize_keys)
     if @map.save
       redirect_to edit_map_path(@map)
     else

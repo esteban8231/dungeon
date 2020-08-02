@@ -1,0 +1,9 @@
+.map_container
+  /img.is_background src="#{@map.background_image_link}"
+  .grid_container
+    - @map.rows.order(:ordinate).each do |row|
+      .row_container        
+        - row.tiles.order(:abscissa).each do |tile|
+          input[id = "tile-#{tile.ordinate}-#{tile.abscissa}", class = "grid_button #{@map.map_type}_#{tile.tile_type}"]
+        - row.tiles.order(:abscissa).each do |tile|
+          span = "#{tile.id}."

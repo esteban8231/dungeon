@@ -1,3 +1,18 @@
-h1 Maps#index
-p Find me in app/views/maps/index.html.slim
-/ Tengo acceso a @maps
+.container
+  .title Mapas
+  table.table.is-striped
+    thead
+      tr
+        th Tipo
+        th Visible?        
+    tbody
+      - @maps.each do |map|
+        tr
+          td = map.map_type
+          td = "#{map.is_current ? 'Sí' : 'No'}"
+          - if map.is_current
+            td = link_to "Quitar visibilidad", map_visibility_path(map.id), method: :delete
+          - else
+            td = link_to "Dar visibilidad", map_visibilities_path(id: map.id), method: :post
+      tr
+        td = link_to "Crear mapa", new_map_path, class: "button is-black is-rounded is-small"

@@ -1,3 +1,27 @@
-h1 Maps#new
-p Find me in app/views/maps/new.html.slim
-/ tengo acceso a @map
+.container
+  .title Simple creación de mapa
+  = form_with model: @map, local: true do |f|
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :height, "Altura", class: 'label'
+      .field-body
+        = f.number_field :height, placeholder: "15"
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :width, "Ancho", class: 'label'
+      .field-body
+        = f.number_field :width, placeholder: "15"
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :map_type, "Tipo de mapa", class: 'label'
+      .field-body
+        = f.text_field :map_type, placeholder: "jungle, castle, cave, swamp, desert, snow, water, city"
+    .field.is-horizontal
+      .field-label.is-horizontal
+        = f.label :background_image_link, "Imagen de fondo", class: 'label'
+      .field-body
+        = f.text_field :background_image_link, placeholder: ""
+    .field.is-horizontal
+      .field-label.is-normal
+      .field-body
+        = f.submit "Crear", class: "button is-success"
