@@ -4,12 +4,14 @@
   table.table.is-striped
     thead
       tr
+        th id
         th Nombre
         th Ataques
         th Armadura
     tbody
       - @characters.each do |monster|
         tr
+          td = monster.id
           td = link_to "#{monster.icon} #{monster.name}", edit_character_path(monster)
           td = monster.attacks.count
           td = monster.calculate_ac
