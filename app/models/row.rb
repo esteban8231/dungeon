@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: rows
+#
+#  id         :bigint           not null, primary key
+#  map_id     :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  ordinate   :integer
+#
+
 class Row < ApplicationRecord
   has_many :tiles
   belongs_to :map, optional: true

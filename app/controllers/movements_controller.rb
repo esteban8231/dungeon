@@ -3,6 +3,7 @@ class MovementsController < ApplicationController
     @character = Character.find_by(id: cookies[:character_id])
     @character.update(movements_params)
     @map_characters = Character.in_map
+    Character.broadcast_positions
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js {

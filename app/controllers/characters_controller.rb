@@ -35,7 +35,11 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character = Character.owner_is(cookies[:user]).find(params[:id])    
+    if cookies[:user] == "Mmaster"
+      @character = Character.find(params[:id])    
+    else
+      @character = Character.owner_is(cookies[:user]).find(params[:id])    
+    end
   end
 
   def delete
