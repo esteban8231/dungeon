@@ -8,4 +8,9 @@ class BasicPagesController < ApplicationController
     cookies.permanent[:user] = params[:user]
     redirect_to root_path
   end
+
+  def logout
+    cookies.delete :user
+    redirect_to root_path
+  end
 end

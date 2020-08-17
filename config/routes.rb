@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   get 'login', to: 'basic_pages#login'
   post 'login', to: 'basic_pages#register'  
+  get 'logout', to: 'basic_pages#logout'
 end
