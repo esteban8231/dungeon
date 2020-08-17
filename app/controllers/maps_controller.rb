@@ -31,7 +31,7 @@ class MapsController < ApplicationController
   #No hay update sino que lo que se updatea son los tiles
 
   def index
-    @maps = Map.all
+    @maps = Map.all.order(:is_current, id: :desc)
   end
 
   private
@@ -43,6 +43,6 @@ class MapsController < ApplicationController
     end
 
     def map_params
-      params.require(:map).permit(:height, :width, :map_type, :background_image_link)
+      params.require(:map).permit(:height, :width, :map_type, :background_image_link, :name)
     end
 end

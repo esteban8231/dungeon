@@ -19,6 +19,7 @@ class CharactersController < ApplicationController
     @character = Character.owner_is(cookies[:user]).find(params[:id])
     @attack = @character.attacks.build
     @armor = @character.armors.build
+    @spell = @character.known_spells.build
   end
 
   def update

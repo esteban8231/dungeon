@@ -11,9 +11,12 @@ Rails.application.routes.draw do
   resources :map_visibilities, only: [:create, :destroy] #Solo para el master
 
   resources :tiles, only: [:update] #Solo para el master
+  post 'edit_tile', to: 'tiles#edit_tile'
 
   resources :attacks, only: [:create, :destroy]
   resources :armors, only: [:create, :destroy]
+  resources :known_spells, only: [:create, :destroy]
+  resources :prepared_spells, only: [:create, :destroy]
 
 
   get 'login', to: 'basic_pages#login'

@@ -3,6 +3,11 @@
   = form_with model: @map, local: true do |f|
     .field.is-horizontal
       .field-label.is-horizontal
+        = f.label :name, "Nombre", class: 'label'
+      .field-body
+        = f.text_field :name, placeholder: "jungle, castle, cave, swamp, desert, snow, water, city"
+    .field.is-horizontal
+      .field-label.is-horizontal
         = f.label :height, "Altura", class: 'label'
       .field-body
         = f.number_field :height, placeholder: "15"

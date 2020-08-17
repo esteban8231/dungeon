@@ -25,6 +25,8 @@
 class Character < ApplicationRecord
   has_many :attacks
   has_many :armors
+  has_many :known_spells
+  has_many :prepared_spells, through: :known_spells
   
   scope :owner_is, ->(owner){where('characters.owner = (?)', owner)}
   scope :in_map, -> {where(is_current: true)}

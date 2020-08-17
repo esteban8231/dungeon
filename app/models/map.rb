@@ -14,8 +14,8 @@
 class Map < ApplicationRecord
   has_many :rows
 
-  def self.generate(height: 15, width: 15, map_type: 'castle', background_image_link: '')
-    map = self.create(map_type: map_type, background_image_link: background_image_link)
+  def self.generate(height: 15, width: 15, map_type: 'castle', background_image_link: '', name: '')
+    map = self.create(map_type: map_type, background_image_link: background_image_link, name: name)
     height.to_i.times do |ordinate|
       Row.generate(width: width.to_i, ordinate: ordinate, map_id: map.id)
     end

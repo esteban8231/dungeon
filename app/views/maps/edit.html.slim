@@ -1,9 +1,31 @@
 .map_container
-  /img.is_background src="#{@map.background_image_link}"
+  img.is_background src="#{@map.background_image_link}"
   .grid_container
     - @map.rows.order(:ordinate).each do |row|
       .row_container        
         - row.tiles.order(:abscissa).each do |tile|
-          input[id = "tile-#{tile.ordinate}-#{tile.abscissa}", class = "grid_button #{@map.map_type}_#{tile.tile_type}"]
-        - row.tiles.order(:abscissa).each do |tile|
-          span = "#{tile.id}."
+          p[id = "tile-#{tile.ordinate}-#{tile.abscissa}", class = "grid_button #{@map.map_type}_#{tile.tile_type} #{tile.tile_type}"]
+            = tile.id
+
+    .character_card style="left: 40rem"
+      = form_with url: edit_tile_path do |f|
+        .field.is-horizontal
+          .field-label.is-horizontal
+            = f.label :id, "Id", class: 'label'
+          .field-body
+            = f.number_field :id
+
+        .field.is-horizontal
+          .field-label.is-horizontal
+            = f.label :tile_type, "Tipo", class: 'label'
+          .field-body
+            = f.text_field :tile_type, placeholder: "jungle_simple"
+        .field.is-horizontal
+          .field-label.is-normal
+          .field-body
+            = f.submit "Cambiar", class: "button is-success"
+      - %w(jungle_simple jungle_undergrowth jungle_tree jungle_flowers jungle_water jungle_rocks castle_simple castle_wall castle_carpet castle_furniture castle_door castle_simple castle_wall castle_carpet castle_furniture castle_door cave_simple cave_wall cave_stone cave_bones cave_hole cave_water swamp_simple swamp_bush swamp_wood swamp_darkwood swamp_water desert_simple desert_sand desert_tree desert_wood desert_water snow_simple snow_ice snow_stone snow_tree snow_ground water_simple water_green water_stone water_tree water_deep city_simple city_house city_wood city_tree wall).each do |tile_type|
+        .row_container
+          p[class = "grid_button #{tile_type}"]
+          p[style="margin-left: 1rem"] = tile_type
+          hr

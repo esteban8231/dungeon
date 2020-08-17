@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_041341) do
+ActiveRecord::Schema.define(version: 2020_08_17_191831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,27 @@ ActiveRecord::Schema.define(version: 2019_11_20_041341) do
     t.integer "abscissa"
   end
 
+  create_table "known_spells", force: :cascade do |t|
+    t.integer "level"
+    t.boolean "verbal"
+    t.boolean "somatic"
+    t.string "material"
+    t.boolean "focus"
+    t.boolean "divine_focus"
+    t.integer "xp"
+    t.string "casting_time"
+    t.string "range"
+    t.string "duration"
+    t.string "saving_throw"
+    t.boolean "spell_resistance"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "character_id", null: false
+    t.string "name"
+    t.index ["character_id"], name: "index_known_spells_on_character_id"
+  end
+
   create_table "maps", force: :cascade do |t|
     t.string "map_type"
     t.datetime "created_at", precision: 6, null: false
@@ -62,6 +83,13 @@ ActiveRecord::Schema.define(version: 2019_11_20_041341) do
     t.string "background_image_link"
     t.boolean "is_current"
     t.string "name"
+  end
+
+  create_table "prepared_spells", force: :cascade do |t|
+    t.bigint "known_spell_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["known_spell_id"], name: "index_prepared_spells_on_known_spell_id"
   end
 
   create_table "rows", force: :cascade do |t|
@@ -85,4 +113,6 @@ ActiveRecord::Schema.define(version: 2019_11_20_041341) do
 
   add_foreign_key "armors", "characters"
   add_foreign_key "attacks", "characters"
+  add_foreign_key "known_spells", "characters"
+  add_foreign_key "prepared_spells", "known_spells"
 end

@@ -1,15 +1,27 @@
-p
+p.is-size-3
   = "#{character.name} #{character.icon}"
-h3 Ataques
+p = "Max HP: #{character.hp_max}"
+p = "AC: #{character.calculate_ac}"
+p.is-size-4.has-text-danger Ataques
 - character.attacks.each do |attack|
-  p
-    = "#{attack.weapon} + #{attack.attack_bonus} / #{attack.damage_dice}"
-h3 Características
-p 
-  = "Fue #{character.strength} Dex #{character.dexterity} Con #{character.constitution} Int #{character.inteligence} Car #{character.charisma} Sab #{character.wisdom}"
-h3 HP
-p
-  = "Max: #{character.hp_max}"
-p
-  = "AC: #{character.calculate_ac}"
-h3 Hechizos conocidos
+  p = "#{attack.weapon} + #{attack.attack_bonus} / #{attack.damage_dice}"
+p.is-size-4.has-text-danger Características
+p = "Fue #{character.strength} Dex #{character.dexterity} Con #{character.constitution} Int #{character.inteligence} Car #{character.charisma} Sab #{character.wisdom}"
+p.is-size-4.has-text-danger Hechizos preparados
+table.table.is-narrow       
+  thead
+    tr
+      th Nivel
+      th Nombre
+      th V S M F DF XP 
+      th    
+  tbody
+    - character.prepared_spells.sort_by{|s| s.known_spell.level}.each do |prepared_spell|
+      tr
+        - spell = prepared_spell.known_spell
+        td = spell.level
+        td = spell.name
+        td = spell.components
+        td = link_to "close", prepared_spell_path(prepared_spell), method: :delete, class: "material-icons", style: "font-size: 1rem; font-weight: bold;"
+p.is-size-4.has-text-danger Objetos
+p.is-size-4.has-text-danger Notas

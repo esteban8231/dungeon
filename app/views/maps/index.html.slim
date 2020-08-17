@@ -3,16 +3,23 @@
   table.table.is-striped
     thead
       tr
+        th Id
+        th Nombre
         th Tipo
-        th Visible?        
+        th Visible? 
+        th        
+        th Editar      
     tbody
       - @maps.each do |map|
         tr
+          td = map.id
+          td = map.name
           td = map.map_type
           td = "#{map.is_current ? 'Sí' : 'No'}"
           - if map.is_current
             td = link_to "Quitar visibilidad", map_visibility_path(map.id), method: :delete
           - else
             td = link_to "Dar visibilidad", map_visibilities_path(id: map.id), method: :post
+          td = link_to "Editar", edit_map_path(map)
       tr
         td = link_to "Crear mapa", new_map_path, class: "button is-black is-rounded is-small"

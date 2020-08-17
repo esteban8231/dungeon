@@ -66,3 +66,75 @@
             tr
               td = hidden_field_tag :character_id, @character.id
               td = submit_tag "Agregar", class: "button is-dark is-rounded is-small"
+  .columns
+    .column.is-12
+      .is-size-3.has-text-link Hechizos conocidos
+      table.table.is-narrow       
+        thead
+          tr
+            th Nombre
+            th Nivel
+            th V S M F DF XP
+            th Cast time
+            th Rango
+            th Duración
+            th Salvación
+            th R.C.
+            th Descripción
+            th Preparados
+        tbody
+          - @character.known_spells.order(:level).each do |spell|
+            tr
+              th = spell.name
+              th = spell.level
+              td = spell.components
+              td = spell.casting_time
+              td = spell.range
+              td = spell.duration
+              td = spell.saving_throw
+              td = spell.spell_resistance ? "Sí" : "No"
+              td = spell.description
+              td
+                = spell.prepared_spells.count
+                = link_to "add", prepared_spells_path(known_spell_id: spell.id), class: "material-icons md-18", style: "font-size: 1rem; font-weight: bold;", method: :post
+
+
+          = form_with model: @spell, local: true do |f|
+            tr
+              td = text_field_tag :name, "", placeholder: "Rayo abrazador", size: "6"
+              td = number_field_tag :level, "",  placeholder: "0", size: "2"
+              td
+                = check_box_tag :verbal
+                = check_box_tag :somatic
+                = check_box_tag :material
+                = check_box_tag :focus
+                = check_box_tag :divine_focus
+                = number_field_tag :xp, "",  placeholder: "0", size: "4"
+              td = text_field_tag :casting_time, "", placeholder: "estándar", size: "4"
+              td = text_field_tag :range, "", placeholder: "1'", size: "4"
+              td = text_field_tag :duration, "", placeholder: "1 ronda", size: "4"
+              td = text_field_tag :saving_throw, "", placeholder: "dex 1/2", size: "4"
+              td = check_box_tag :spell_resistance
+              td = text_area_tag :description, "", placeholder: "dex 1/2", size: "29"
+            tr
+              td = hidden_field_tag :character_id, @character.id
+              td
+              td
+              td
+              td
+              td
+              td
+              td
+              td = submit_tag "Agregar", class: "button is-dark is-rounded is-small"    
+/level
+/verbal
+/somatic
+/material
+/focus
+/divine_focus
+/xp
+/casting_time
+/range
+/duration
+/saving_throw
+/spell_resistance

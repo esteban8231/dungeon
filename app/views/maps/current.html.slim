@@ -5,14 +5,16 @@
       .row_container        
         - row.tiles.order(:abscissa).each do |tile|
           /button class = "grid_button #{@map.map_type}_#{tile.tile_type}"
-          = button_to '', movements_path(ordinate: tile.ordinate, abscissa: tile.abscissa), class: "grid_button #{@map.map_type}_#{tile.tile_type}", remote: true
+          = button_to '', movements_path(ordinate: tile.ordinate, abscissa: tile.abscissa), class: "grid_button #{@map.map_type}_#{tile.tile_type} #{tile.tile_type}", remote: true
     - n = 33.18
     #miniatures
       = render 'miniatures', map_characters: @map_characters
 
     - ancho = 40
     .character_card style="left: #{ancho}rem"
-      - Character.owner_is(cookies[:user]).in_map.each do |monster|
-        = link_to "#{monster.icon} #{monster.name}", character_views_path(character_id: monster.id), remote: true, method: :post, class: "button is-warning"
+      .field.is-grouped
+        - Character.owner_is(cookies[:user]).in_map.each do |monster|
+          .control
+            = link_to "#{monster.icon} #{monster.name}", character_views_path(character_id: monster.id), remote: true, method: :post, class: "button is-warning"
       #char_container
         = render 'character', character: @character
